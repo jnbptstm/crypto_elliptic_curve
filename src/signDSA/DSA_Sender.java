@@ -13,13 +13,14 @@ import operations.Point;
 public class DSA_Sender {
 
 	private Courbe ec;
-	public Point Q; // Clé publique.
-	private BigInteger s; // Clé privée.
+	public Point Q; // Clï¿½ publique.
+	private BigInteger s; // Clï¿½ privï¿½e.
 	private Point G;	
 	
 	public DSA_Sender(){
 		ec = Main.ellipticCurve;
-		s = new BigInteger(160, new Random());
+//		s = new BigInteger(160, new Random());
+		s = new BigInteger("12345678");
 		G = new Point(ec.getGx(), ec.getGy(), false);		
 		Q = Operations.multiplication(G, s);
 	}
@@ -35,9 +36,11 @@ public class DSA_Sender {
 		
 		do{
 			hash = null;
-			k = new BigInteger(160, new Random());	
+//			k = new BigInteger(160, new Random());
+			k = new BigInteger("87654321");
 			Point IJ = Operations.multiplication(G, k);
 			x = IJ.getX().mod(p);
+			System.out.println("IJ: "+ IJ);
 			
 			try { 
 				hash = MessageDigest.getInstance("SHA-1").digest(messageb); //MD2, MD5, SHA-1, SHA-256, SHA-384, SHA-512
@@ -45,7 +48,7 @@ public class DSA_Sender {
 			catch (NoSuchAlgorithmException e) { throw new Error("no SHA1 support in this VM"); }
 			catch (Exception e) { e.printStackTrace(); }
 			
-			y = (new BigInteger(hash).add(s.multiply(x).mod(p)).mod(p)).multiply(k.modInverse(p)).mod(p);
+			y = (new BigInteger(hash).mod(p).add(s.multiply(x).mod(p)).mod(p)).multiply(k.modInverse(p)).mod(p);
 			
 		}while (y.equals(BigInteger.ZERO) || x.equals(BigInteger.ZERO));
 		
@@ -53,10 +56,10 @@ public class DSA_Sender {
 	}
 	
 	public Point getQ() {
-		return Q;
+		return new Point(Q);
 	}
 
 	public void setQ(Point q) {
-		Q = q;
+		Q = new Point(q);
 	}
 }

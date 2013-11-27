@@ -15,7 +15,7 @@ public class DSA_Main {
 	
 	public static void main(String args[]){
 		
-		message = "Top secret";
+		message = "test";
 		send = new DSA_Sender();
 		signature = send.sign(message);
 		System.out.println("Signature: "+ signature);

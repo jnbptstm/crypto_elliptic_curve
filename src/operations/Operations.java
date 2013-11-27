@@ -59,7 +59,9 @@ public class Operations {
 			if (Bin.subSequence(Bin.length()-ii, Bin.length() - ii + 1).equals("1")) {
 				res = addition(res, p);
 			}
-		}		
+		}
+		
+		if(n.equals(Main.ellipticCurve.getP())) res.setIsInfinite(true);
 		return res;
 	}
 	

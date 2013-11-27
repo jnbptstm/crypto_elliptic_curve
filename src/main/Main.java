@@ -3,6 +3,8 @@ package main;
 import java.math.BigInteger;
 
 import operations.Courbe;
+import operations.Operations;
+import operations.Point;
 
 /**
  * Classe de tests.
@@ -13,7 +15,7 @@ public class Main {
 	
 	public static void main(String args[]){
 			
-		// Courbe non-supersingulière (donc ordinaire), donc non sujette à l'attaque MOV.
+		// Courbe non-supersinguliï¿½re (donc ordinaire), donc non sujette ï¿½ l'attaque MOV.
 		BigInteger p = new BigInteger("8884933102832021670310856601112383279507496491807071433260928721853918699951");
 		BigInteger n = new BigInteger("8884933102832021670310856601112383279454437918059397120004264665392731659049");
 		BigInteger a4 = new BigInteger("2481513316835306518496091950488867366805208929993787063131352719741796616329");
@@ -26,19 +28,22 @@ public class Main {
 		
 		ellipticCurve = new Courbe(p, n, a4, a6, r4, r6, gx, gy, r);
 		
+		System.out.println("nG: "+ Operations.multiplication(new Point(gx, gy, false), n).getIsInfinite());
+		System.out.println("pG: "+ Operations.multiplication(new Point(gx, gy, false), p).getIsInfinite());
+		
 		/** ===================== TESTS =============================== */
 
 //		operations.Operations.main(args); //OK
 		
 //		diffieHellman.DH_Main.main(args); //OK
 		
-		elGamal.EG_Main.main(args); //TODO
+//		elGamal.EG_Main.main(args); //TODO
 		
 		/**
 		 * TODO:
-		 * Lors de l'initialisation de la paire de clé, nQ != (0, 0)!
+		 * Lors de l'initialisation de la paire de clï¿½, nQ != (0, 0)!
 		 */
-//		signDSA.DSA_Main.main(args);
+		signDSA.DSA_Main.main(args);
 		
 		/**
 		 * TODO

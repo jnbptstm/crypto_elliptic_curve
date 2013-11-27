@@ -9,8 +9,8 @@ import operations.Point;
 
 public class EG_Bob implements Runnable{
 	
-	private BigInteger x; // clé privée
-	private static Point H = null; // clé publique
+	private BigInteger x; // clï¿½ privï¿½e
+	private static Point H = null; // clï¿½ publique
 	
 	private static Point A = null;
 	private static Point B = null;
@@ -23,9 +23,9 @@ public class EG_Bob implements Runnable{
 //		x = new BigInteger("2").pow( 22);
 		x = new BigInteger(160, new Random());
 		
-		System.out.println("BOB: calcul de la clé publique...");
+		System.out.println("BOB: calcul de la clï¿½ publique...");
 		H = EG_Utils.calculPoint(x, P);
-		System.out.println("BOB: clé publique générée.");
+		System.out.println("BOB: clï¿½ publique gï¿½nï¿½rï¿½e.");
 	}
 	
 /**
@@ -37,25 +37,27 @@ m = b - c
 	@Override
 	public void run() {
 		
-		System.out.println("BOB: attente de la génération de 'a' et 'b' par Alice...");
+		System.out.println("BOB: attente de la gï¿½nï¿½ration de 'a' et 'b' par Alice...");
 //		while(EG_Alice.getA() == null && EG_Alice.getB() == null){}
 //		A = EG_Alice.getA();
 //		B = EG_Alice.getB();
 		
 		while(EG_Bob.getA() == null && EG_Bob.getB() == null){}
 		
-		System.out.println("BOB: génération de 'a' et 'b' par Alice effectuée.");
+		System.out.println("BOB: gï¿½nï¿½ration de 'a' et 'b' par Alice effectuï¿½e.");
 		System.out.println("BOB: A="+ A);
 		System.out.println("BOB: B="+ B);
 		
-		System.out.println("BOB: déchiffrement du message...");
+		System.out.println("BOB: dï¿½chiffrement du message...");
+		
 		C = EG_Utils.calculPoint(x, A);
+		System.out.println("C: "+ C);
 		m = EG_Utils.addPoint(B, Operations.oppose(C));
 		
 //		System.out.println(C);
 //		System.out.println(Operations.oppose(C));
 		
-		System.out.println("BOB: message déchiffré.");
+		System.out.println("BOB: message dï¿½chiffrï¿½.");
 		System.out.println(m.toString());
 		
 	}
