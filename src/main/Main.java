@@ -15,7 +15,7 @@ public class Main {
 	
 	public static void main(String args[]){
 			
-		// Courbe non-supersinguli�re (donc ordinaire), donc non sujette � l'attaque MOV.
+		// Courbe non-supersingulière (donc ordinaire), donc non sujette à l'attaque MOV.
 		BigInteger p = new BigInteger("8884933102832021670310856601112383279507496491807071433260928721853918699951");
 		BigInteger n = new BigInteger("8884933102832021670310856601112383279454437918059397120004264665392731659049");
 		BigInteger a4 = new BigInteger("2481513316835306518496091950488867366805208929993787063131352719741796616329");
@@ -37,13 +37,13 @@ public class Main {
 		
 //		diffieHellman.DH_Main.main(args); //OK
 		
-//		elGamal.EG_Main.main(args); //TODO
+//		elGamal.EG_Main.main(args); //OK
 		
 		/**
 		 * TODO:
 		 * Lors de l'initialisation de la paire de cl�, nQ != (0, 0)!
 		 */
-		signDSA.DSA_Main.main(args);
+//		signDSA.DSA_Main.main(args);
 		
 		/**
 		 * TODO

@@ -5,6 +5,7 @@ import java.util.*;
 
 import main.Main;
 
+
 public class Operations {
 	
 	public static Point oppose(Point p){
