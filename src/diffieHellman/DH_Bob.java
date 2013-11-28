@@ -1,73 +1,66 @@
 package diffieHellman;
 
 import java.math.BigInteger;
+import java.util.Random;
 
 import main.Main;
-
-import operations.Courbe;
 import operations.Point;
 
 public class DH_Bob implements Runnable{
 
-	private Courbe courbe;
-	private BigInteger x;
-	private Point p = new Point(Main.ellipticCurve.getGx(), Main.ellipticCurve.getGy(), false);
-	private BigInteger clefPriveeB;
-	private Point B;
-	private Point clefSecrete;
-	private static Point A = null;
+	private static Point A = null; // Alice's public key
 	
-	public static void setA(Point a) {
-		A = a;
-	}
+	private Point generator = new Point(Main.ellipticCurve.getGx(), Main.ellipticCurve.getGy(), false);
+	private BigInteger privateKey;
+	private Point publicKey;
+	private Point secretKey;
 
-	public DH_Bob(Courbe courbe, BigInteger x){
-		this.courbe = courbe;
-		this.x = x;
+	public DH_Bob(){
 	}
 	
 	@Override
 	public void run(){
 		
-		this.clefPriveeB = new BigInteger("3");
-		B = DH_Utils.calculPoint(this.clefPriveeB, p);
+		System.out.println("BOB: generating private key...");
+		this.privateKey = new BigInteger(160, new Random());
+		
+		System.out.println("BOB: private key generated. Calculating public key...");
+		publicKey = DH_Utils.calculPoint(this.privateKey, generator);
 
-		System.out.println("BOB: Bob envoie B à Alice...");
-		DH_Utils.envoyerDeBaA(B);
-		System.out.println("BOB: Bob a envoyé B à Alice. Attente de l'envoie d'Alice...");
+		
+		System.out.println("BOB: sending public key to Alice...");
+		DH_Utils.envoyerDeBaA(publicKey);
+		
+		System.out.println("BOB: public key sent. Waiting for Alice's public key...");
 		while(DH_Bob.getA() == null){}
-		System.out.println("BOB: Envoie Alice effectué. Calcul clé secrète...");
 		
-		clefSecrete = DH_Utils.calculPoint(this.clefPriveeB, A);
-		System.out.println("BOB: clé secrète est "+ clefSecrete);
+		System.out.println("BOB: public key received. Computing secret key...");
+		secretKey = DH_Utils.calculPoint(this.privateKey, A);
 		
+		System.out.println("BOB: secret key is "+ secretKey);
 	}
 
 	public static synchronized Point getA() {
 		return A;
 	}
 
-	public Courbe getCourbe() {
-		return courbe;
+	public Point getGenerator() {
+		return generator;
 	}
 
-	public BigInteger getX() {
-		return x;
+	public BigInteger getPrivateKey() {
+		return privateKey;
 	}
 
-	public Point getP() {
-		return p;
-	}
-
-	public BigInteger getClefPriveeB() {
-		return clefPriveeB;
-	}
-
-	public Point getB() {
-		return B;
+	public Point getPublicKey() {
+		return publicKey;
 	}
 
 	public Point getClefSecrete() {
-		return clefSecrete;
+		return secretKey;
+	}
+	
+	public static void setA(Point a) {
+		A = a;
 	}
 }
