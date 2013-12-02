@@ -42,7 +42,7 @@ public class Courbe {
 		this.gy = gy;
 		this.r = r;
 		calculDiscriminant();
-//		calculJ_invariant();
+		calculJ_invariant();
 	}
 	
 	private void calculDiscriminant(){
@@ -57,7 +57,7 @@ public class Courbe {
 	}
 	
 	private void calculJ_invariant(){
-		this.j_invariant = c4.pow(3).multiply(discriminant.pow(-1));
+		this.j_invariant = c4.pow(3).multiply(discriminant.modInverse(p));
 	}
 	
 	public BigInteger[] value(BigInteger x, BigInteger y){

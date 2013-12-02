@@ -13,14 +13,13 @@ import operations.Point;
 public class DSA_Sender {
 
 	private Courbe ec;
-	public Point Q; // Cl� publique.
-	private BigInteger s; // Cl� priv�e.
+	public Point Q; // Cle publique.
+	private BigInteger s; // Cle privee.
 	private Point G;	
 	
 	public DSA_Sender(){
 		ec = Main.ellipticCurve;
-//		s = new BigInteger(160, new Random());
-		s = new BigInteger("12345678");
+		s = new BigInteger(160, new Random());
 		G = new Point(ec.getGx(), ec.getGy(), false);		
 		Q = Operations.multiplication(G, s);
 	}
@@ -36,8 +35,7 @@ public class DSA_Sender {
 		
 		do{
 			hash = null;
-//			k = new BigInteger(160, new Random());
-			k = new BigInteger("87654321");
+			k = new BigInteger(160, new Random());
 			Point IJ = Operations.multiplication(G, k);
 			x = IJ.getX().mod(p);
 			System.out.println("IJ: "+ IJ);

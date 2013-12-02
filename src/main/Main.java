@@ -3,8 +3,6 @@ package main;
 import java.math.BigInteger;
 
 import operations.Courbe;
-import operations.Operations;
-import operations.Point;
 
 /**
  * Classe de tests.
@@ -28,26 +26,25 @@ public class Main {
 		
 		ellipticCurve = new Courbe(p, n, a4, a6, r4, r6, gx, gy, r);
 		
-		System.out.println("nG: "+ Operations.multiplication(new Point(gx, gy, false), n).getIsInfinite());
-		System.out.println("pG: "+ Operations.multiplication(new Point(gx, gy, false), p).getIsInfinite());
-		
 		/** ===================== TESTS =============================== */
 
-//		operations.Operations.main(args); //OK
+		System.out.println("\n\tTEST OPERATIONS");
+		operations.Operations.main(args); //OK
 		
-//		diffieHellman.DH_Main.main(args); //OK
+		System.out.println("\n\tTEST DIFFIE-HELLMAN");
+		diffieHellman.DH_Main.main(args); //OK
 		
-//		elGamal.EG_Main.main(args); //OK
+		System.out.println("\n\tTEST EL GAMAL");
+		elGamal.EG_Main.main(args); //OK
 		
 		/**
 		 * TODO:
-		 * Lors de l'initialisation de la paire de cl�, nQ != (0, 0)!
+		 * Lors de l'initialisation de la paire de cle, nQ != (0, 0)!
 		 */
 //		signDSA.DSA_Main.main(args);
 		
 		/**
 		 * TODO
-		 * Not created yet...
 		 */
 		//dh_sts.DHSTS_Main.main(args);
 		

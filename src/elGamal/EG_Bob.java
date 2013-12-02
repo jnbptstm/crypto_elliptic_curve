@@ -49,7 +49,6 @@ public class EG_Bob implements Runnable{
 	}
 	
 	public static synchronized Point getCypheredText(){
-		System.out.println("debut get");
 		return cypheredText;
 	}
 	

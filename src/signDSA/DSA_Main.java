@@ -11,8 +11,6 @@ public class DSA_Main {
 	public static DSA_Verifier rec;
 	public static boolean match;
 	
-	//public static Point p = new Point(Main.ellipticCurve.getGx(), Main.ellipticCurve.getGy(), false);
-	
 	public static void main(String args[]){
 		
 		message = "test";

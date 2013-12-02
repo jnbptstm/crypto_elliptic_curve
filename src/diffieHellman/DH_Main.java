@@ -21,5 +21,10 @@ public class DH_Main {
 				
 		t_bob.start();
 		t_alice.start();
+		
+		try{
+			t_bob.join();
+			t_alice.join();
+		}catch(InterruptedException e){e.printStackTrace();}
 	}
 }

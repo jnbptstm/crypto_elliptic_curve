@@ -10,7 +10,7 @@ import operations.*;
 public class DSA_Verifier {
 
 	private BigInteger p;
-	public Point Q; // cl� publique d'Alice
+	public Point Q; // cle publique d'Alice
 
 	private Courbe ec;
 	private Point G;
@@ -20,7 +20,7 @@ public class DSA_Verifier {
 		ec = Main.ellipticCurve;
 		p = ec.getP();
 		
-		G = new Point(ec.getGx(), ec.getGy(), false); // Point appartenant � la courbe elliptique.
+		G = new Point(ec.getGx(), ec.getGy(), false); // Point appartenant a la courbe elliptique.
 		
 		this.setQ(Q);
 		
