@@ -37,8 +37,9 @@ public class EG_Main {
 	public static void main(String args[]){
 
 		P = new Point(Main.ellipticCurve.getGx(), Main.ellipticCurve.getGy(), false);
+		Point message = new Point(new BigInteger("123"), new BigInteger("456789"), false);
 		
-		Thread t_alice = new Thread(new EG_Alice());
+		Thread t_alice = new Thread(new EG_Alice(message));
 		Thread t_bob = new Thread(new EG_Bob());
 		t_bob.start();
 		t_alice.start();	

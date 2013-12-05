@@ -24,16 +24,8 @@ public class DSA_Verifier {
 		
 		this.setQ(Q);
 		
-		
-		//recup et verif la clef pub de alice
-//		try {
-//			DSA_Sender.class.getDeclaredField("Q");
-//		} 
-//		catch (SecurityException e) {e.printStackTrace();} 
-//		catch (NoSuchFieldException e) {e.printStackTrace();}
-		
 		if (Q.isElementNeutre()) System.out.println("ERROR, Q = (0, 0)");
-		if (Q.getIsInfinite()) System.out.println("ERROR, Q point � l'infini");
+		if (Q.getIsInfinite()) System.out.println("ERROR, Q point a l'infini");
 		if (!(Operations.multiplication(Q, p).isElementNeutre())) System.out.println("ERROR, nQ != (0, 0)");
 		
 		System.out.println("nQ: "+ Operations.multiplication(Q, p));
@@ -69,8 +61,6 @@ public class DSA_Verifier {
 		Point Test = Operations.addition(Test1, Test2);
 		System.out.println("u: "+ sign.getX().mod(p) +"\nx: "+ Test.getX().mod(p));
 		System.out.println("v: "+ sign.getY().mod(p) +"\ny: "+ Test.getY().mod(p));
-		
-//		System.out.println(Operations.multiplication(Test, n));
 		
 		if(Test.getX().equals(sign.getX())){
 			System.out.println("VERIF OK: x = i mod n");

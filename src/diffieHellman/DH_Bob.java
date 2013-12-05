@@ -6,6 +6,10 @@ import java.util.Random;
 import main.Main;
 import operations.Point;
 
+/**
+ * See algorithm in 'DH_Main.java'.
+ */
+
 public class DH_Bob implements Runnable{
 
 	private static Point A = null; // Alice's public key

@@ -19,12 +19,12 @@ public class EG_Alice implements Runnable{
 	private BigInteger privateKey;
 	private Point cypherText = null;
 	
-	public EG_Alice(){
+	public EG_Alice(Point message){
 		
 		P = EG_Main.P;
 		
 		// message
-		message = new Point(new BigInteger("123"), new BigInteger("456789"), false);
+		this.message = message;
 		System.out.println("ALICE: message: "+ message);
 		
 		// generating private key

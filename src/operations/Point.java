@@ -2,6 +2,10 @@ package operations;
 
 import java.math.BigInteger;
 
+/**
+ * Class that defines a Point
+ */
+
 public class Point {
 
 	private BigInteger x;
@@ -74,7 +78,7 @@ public class Point {
 		return "Point x= "+this.x+", y= "+this.y+".";
 	}
 	
-	
+	// Tests...
 	public static void main(String args[]){
 		
 		Point p1 = new Point(new BigInteger("2"), new BigInteger("3"), false);

@@ -4,9 +4,12 @@ package diffieHellman;
  * Diffie-Hellman algorithm using Elliptic Curve *
  *************************************************/
 /*
- * 1. Alice and Bob 
+ * 1. Alice and Bob generate their key pair:
+ *      a. Random private key (da for Alice, db for Bob) between 1 and p.
+ *      b. Public key (Qa = da.P for Alice, Qb = db.P for Bob).
  * 
- * 
+ * 2. Alice computes (xk, yk) = da.Qb and Bob computes (xk, yk) = db.Qa
+ * xk is the shared secret.
  */
 
 public class DH_Main {

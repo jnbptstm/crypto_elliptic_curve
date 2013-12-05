@@ -62,7 +62,6 @@ public class Courbe {
 	
 	public BigInteger[] value(BigInteger x, BigInteger y){
 		BigInteger tab[]= new BigInteger[2];
-//		tab[0] = y.pow(2).mod(Main.ellipticCurve.getP());
 		tab[0] = y.modPow(new BigInteger("2"), Main.ellipticCurve.getP());
 		tab[1] = x.pow(3).mod(Main.ellipticCurve.getP()).add(a4.multiply(x).mod(Main.ellipticCurve.getP()).add( a6).mod(Main.ellipticCurve.getP())).mod(Main.ellipticCurve.getP());
 		return tab;
@@ -71,10 +70,6 @@ public class Courbe {
 	 * y^2 = x^3 + a4 x + a6
 	 */
 	public BigInteger[] value_y(BigInteger x){
-//		return new BigInteger[]{
-//				Operations.sqrt(x.pow(3).mod(Main.ellipticCurve.getP()).add(a4.multiply(x).mod(Main.ellipticCurve.getP()).add(a6).mod(Main.ellipticCurve.getP()))).mod(Main.ellipticCurve.getP()), 
-//				Operations.sqrt(x.pow( 3) .add( a4.multiply(x) .add( a6))).negate()
-//				};
 		return new BigInteger[]{
 				Operations.sqrt(x.modPow(new BigInteger("3"), Main.ellipticCurve.getP()).add(Main.ellipticCurve.getA4().multiply(x).mod(Main.ellipticCurve.getP())).add(Main.ellipticCurve.getA6()).mod(Main.ellipticCurve.getP())), 
 				Operations.sqrt(new BigInteger("4"))
@@ -82,21 +77,12 @@ public class Courbe {
 	}
 
 	public boolean testPoints(Point point) {
-		// TODO Auto-generated method stub
 		BigInteger tab[]= new BigInteger[2];
 		tab = this.value(point.getX(), point.getY());
-		if(tab[0].equals(tab[1])){
-//			System.out.println(tab[0]+"  "+tab[1]);
+		if(tab[0].equals(tab[1]))
 			return true;
-		}
-//		System.out.println(tab[0]+"  "+tab[1]);
 		return false;
 	}
-	
-	
-//	public BigInteger value_x(BigInteger y){
-//		return Math.pow(y, 2);
-//	}
 	
 	public BigInteger getP() {
 		return p;

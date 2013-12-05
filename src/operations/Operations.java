@@ -8,10 +8,12 @@ import main.Main;
 
 public class Operations {
 	
+	// Return the oposite of the point given in parameter.
 	public static Point oppose(Point p){
 		return new Point(p.getX(), p.getY().negate(), false);
 	}
 	
+	// Return the addition of the 2 points given in paramters.
 	public static Point addition(Point p, Point q){
 	
 		Point r = new Point();
@@ -23,6 +25,7 @@ public class Operations {
 			r.setY(lambda.negate().multiply(r.getX()).mod(Main.ellipticCurve.getP()).add(lambda.multiply(p.getX()).mod(Main.ellipticCurve.getP())).mod(Main.ellipticCurve.getP()).subtract(p.getY()).mod(Main.ellipticCurve.getP()));
 		}
 
+		// Point at infinite
 		else if(p.getX().equals(q.getX()) && !(p.getY().equals(q.getY()))){
 			r.setX(BigInteger.ZERO);
 			r.setY(BigInteger.ZERO);
@@ -35,6 +38,7 @@ public class Operations {
 			r.setY(lambda.negate().multiply(r.getX()).mod(Main.ellipticCurve.getP()).add(lambda.multiply(p.getX()).mod(Main.ellipticCurve.getP())).subtract(p.getY()).mod(Main.ellipticCurve.getP()));
 		}
 		
+		// Point at infinite
 		else if(p.getX().equals(q.getX()) && p.getY().equals(q.getY()) && p.getY().equals(BigInteger.ZERO)){
 			r.setX(BigInteger.ZERO);
 			r.setY(BigInteger.ZERO);
@@ -44,12 +48,15 @@ public class Operations {
 		return r;
 	}
 	
-	public static Point doublement(Point p){ // return 2*p.
+	// Return the double of the point given in parameter (2.p)
+	public static Point doublement(Point p){
 		return addition(p, p);
 	}
 	
+	// Return the result of the multiplication between a point p and a BigInteger n
 	public static Point multiplication(Point p, BigInteger n){
 		
+		// Point at infinite
 		if (p.getIsInfinite() == true) return new Point(BigInteger.ZERO, BigInteger.ZERO, true);
 		
 		Point res = new Point(p);	
@@ -62,9 +69,11 @@ public class Operations {
 			}
 		}
 		
+		// Set point at infinite
 		if(n.equals(Main.ellipticCurve.getP())) res.setIsInfinite(true);
 		return res;
 	}
+	
 	
 	//hashmap avec p1:e1 ... pr:er>> p1^e1 ....
 	//pair: decomposition en nombre premier, impaire : multiplicité du nombre premier
@@ -105,6 +114,7 @@ public class Operations {
 		return m;
 	}
 	
+	//Return the square root of the BigInteger given in parameter
 	public static  BigInteger sqrt(BigInteger n) {
 		BigInteger a = BigInteger.ONE;
 		BigInteger b = new BigInteger(n.shiftRight(5).add(new BigInteger("8")).toString());
@@ -116,7 +126,7 @@ public class Operations {
 		return a.subtract(BigInteger.ONE);
 	}
 	
-	
+	// Tests...
 	public static void main(String args[]){
 		
 		Point P = new Point(Main.ellipticCurve.getGx(), Main.ellipticCurve.getGy(), false);
